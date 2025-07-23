@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+  <style>
+    input {
+      width: 100%;
+      font-size: 20px;
+      text-align: right;
+    }
+    td {
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <table border="1">
+    <tr>
+      <td colspan="4">
+        <input type="text" id="display"  style="height:60px; width:97%" readonly>
+      </td>
+    </tr>
+    <tr>
+      <td onclick="press('1')">1</td>
+      <td onclick="press('2')">2</td>
+      <td onclick="press('3')">3</td>
+      <td onclick="press('+')">+</td>
+    </tr>
+    <tr>
+      <td onclick="press('4')">4</td>
+      <td onclick="press('5')">5</td>
+      <td onclick="press('6')">6</td>
+      <td onclick="press('-')">-</td>
+    </tr>
+    <tr>
+      <td onclick="press('7')">7</td>
+      <td onclick="press('8')">8</td>
+      <td onclick="press('9')">9</td>
+      <td onclick="press('*')">*</td>
+    </tr>
+    <tr>
+      <td onclick="press('0')">0</td>
+      <td onclick="press('.')">.</td>
+      <td onclick="calculate()">=</td>
+      <td onclick="press('/')">/</td>
+    </tr>
+    <tr>
+      <td colspan="4" onclick="clearDisplay()" style="background-color:#f99; text-align:center;">C</td>
+    </tr>
+  </table>
+
+  <script>
+    let expression = "";
+
+    function press(value) {
+      expression += value;
+      document.getElementById("display").value = expression;
+    }
+
+    function calculate() {
+      try {
+        const result = eval(expression);
+        document.getElementById("display").value = result;
+        expression = result.toString(); // For further calculation chaining
+      } catch {
+        document.getElementById("display").value = "Error";
+        expression = "";
+      }
+    }
+
+    function clearDisplay() {
+      expression = "";
+      document.getElementById("display").value = "";
+    }
+  </script>
+
+</body>
+</html>
